@@ -6,6 +6,52 @@
     <title>Document</title>
   </head>
   <body>
-    <script src="./mathScore.js"></script>
+    <script>
+      // 짝수일 경우 더하고 홀수일 경우 *3 +1 해서 1이 되게 만들기
+      // function solution(num, answer = 0) {
+      //   if (num === 1) {
+      //     return answer;
+      //   }
+      //   if (!(num % 2)) {
+      //     num = num / 2;
+      //   } else {
+      //     num = num * 3 + 1;
+      //   }
+      //   answer++;
+      //   return solution(num, answer);
+      // }
+      // solution(6);
+
+      // 암호 만들기
+
+      function solution(s, n) {
+        var answer = [...s];
+        const newAns = answer.map((v) => {
+          if (v === " ") {
+            return v;
+          }
+          let code = v.charCodeAt(0) + n;
+          if ((code < 97 && code > 90) || code > 122) {
+            code = code = code - 26;
+          }
+          return String.fromCharCode(code);
+        });
+        console.log(
+          newAns.reduce((acc, v) => {
+            return acc + v;
+          })
+        );
+        return newAns.reduce((acc, v) => {
+          return acc + v;
+        });
+      }
+      var s = "test 12345";
+      console.log(s.length);
+      solution("y B", 2);
+      console.log("z".charCodeAt(0));
+      console.log("a".charCodeAt(0));
+      console.log("Z".charCodeAt(0));
+      console.log("A".charCodeAt(0));
+    </script>
   </body>
 </html>
