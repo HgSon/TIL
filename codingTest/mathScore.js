@@ -164,3 +164,28 @@ function solution(answers) {
 solution(answers);
 //틀림
 //틀린이유??
+
+//2020-10-18 풀이
+function solution(answers) {
+  const student1 = [1, 2, 3, 4, 5];
+  const student2 = [2, 1, 2, 3, 2, 4, 2, 5];
+  const student3 = [3, 3, 1, 1, 2, 2, 4, 4, 5, 5];
+  let scores = [0, 0, 0];
+  let highScorers = [];
+  for (let i = 0; i < answers.length; i++) {
+    if (student1[i % student1.length] === answers[i]) {
+      scores[0]++;
+    }
+    if (student2[i % student2.length] === answers[i]) {
+      scores[1]++;
+    }
+    if (student3[i % student3.length] === answers[i]) {
+      scores[2]++;
+    }
+  }
+  const maxNum = Math.max(scores[0], scores[1], scores[2]);
+  scores.map((v, i) => {
+    if (v === maxNum) highScorers.push(i + 1);
+  });
+  return highScorers;
+}
