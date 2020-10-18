@@ -1,15 +1,5 @@
 //_2020-10-10 작성_
 
-// 수포자들이 수학시험을 찍을 때 누가 가장 정답을 많이 맞혔는지
-// 1번: [1,2,3,4,5,1,2,3,4,5...]
-// 2번: [2,1,2,3,2,4,2,5,..]
-1357;
-// 3번: [3,3,1,1,2,2,4,4,5,5,...]
-
-//
-//
-const answer = [1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5];
-
 function solution(answer) {
   let scores = [
     { id: 1, score: 0 },
@@ -164,6 +154,8 @@ function solution(answers) {
 solution(answers);
 //틀림
 //틀린이유??
+// 1. ansTwo에서 !(i%2)&& v ===2로 해야 했다.
+// 다음 디버깅 필요
 
 //2020-10-18 풀이
 function solution(answers) {
@@ -188,4 +180,30 @@ function solution(answers) {
     if (v === maxNum) highScorers.push(i + 1);
   });
   return highScorers;
+}
+
+//다른 사람의 풀이
+
+function solution(answers) {
+  var answer = [];
+  var a1 = [1, 2, 3, 4, 5];
+  var a2 = [2, 1, 2, 3, 2, 4, 2, 5];
+  var a3 = [3, 3, 1, 1, 2, 2, 4, 4, 5, 5];
+
+  var a1c = answers.filter((a, i) => a === a1[i % a1.length]).length;
+  var a2c = answers.filter((a, i) => a === a2[i % a2.length]).length;
+  var a3c = answers.filter((a, i) => a === a3[i % a3.length]).length;
+  var max = Math.max(a1c, a2c, a3c);
+
+  if (a1c === max) {
+    answer.push(1);
+  }
+  if (a2c === max) {
+    answer.push(2);
+  }
+  if (a3c === max) {
+    answer.push(3);
+  }
+
+  return answer;
 }
