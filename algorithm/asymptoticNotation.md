@@ -117,6 +117,29 @@ const doLinearSearch = (array, targetValue) => {
   - _ex._ 이진 검색에서 **최악의 경우** 소요되는 실행 시간이 Ω(1)이라고도 말할 수 있다. (최악의 경우 걸리는 시간이므로 Ω(1)는 부정확하다. 최선의 경우까지 포함해서 말하는 경우 Ω(1)이 정확하지만, 이 경우에는 불필요하다.)<br>
     이것은 10달러가 있을 때, "1달러보다 확실히 많이 있다" 고 말해도 옳은 것과 같다.
 
+## 연습문제
+
+log<sub>2</sub>n<sup>log<sub>2</sub><sup>17</sup></sup> 과 log<sub>2</sub>17<sup>log<sub>2</sub><sup>n</sup></sup> 사이의 관계
+
+[o] log<sub>2</sub>n<sup>log<sub>2</sub><sup>17</sup></sup> 은 O(log<sub>2</sub>17<sup>log<sub>2</sub><sup>n</sup></sup>)이다. <br>
+[o] log<sub>2</sub>n<sup>log<sub>2</sub><sup>17</sup></sup> 은 Ω(log<sub>2</sub>17<sup>log<sub>2</sub><sup>n</sup></sup>)이다. <br>
+[o] log<sub>2</sub>n<sup>log<sub>2</sub><sup>17</sup></sup> 은 Θ(log<sub>2</sub>17<sup>log<sub>2</sub><sup>n</sup></sup>)이다.
+
+### 풀이
+
+- log<sub>2</sub>a<sup>b</sup> 는 b \* log<sub>2</sub>a와 같다.
+
+  - log<sub>a</sub>x<sup>n</sup> = n \* log<sub>a</sub>x
+
+  1. log<sub>a</sub>x = m 으로 두면 <br>
+  2. x = a<sup>m</sup>
+  3. x<sup>n</sup> = a<sup>mn</sup>
+  4. 양변에 로그를 취하면 log<sub>a</sub>x<sup>n</sup> = log<sub>a</sub>a<sup>mn</sup>
+  5. x<sup>n</sup> = y 일 때 log<sub>x</sub>y = n 이므로, <br> log<sub>a</sub>a<sup>mn</sup> = a를 몇 번 제곱하면 a<sup>mn</sup>이 되는가 = mn
+  6. `4.` `5.` 에서 log<sub>a</sub>x<sup>n</sup> = mn
+  7. `1.` 에서 log<sub>a</sub>x = m이므로
+  8. log<sub>a</sub>x<sup>n</sup> = log<sub>a</sub>x \* n
+
 #### 참조
 
 1. Thomas H. Cormen., Devin Balkcom., & Khan Academy Computing Curriculum Team. (2020). Computer science unit: Algorithms. Retrieved from https://www.khanacademy.org/computing/computer-science/algorithms
