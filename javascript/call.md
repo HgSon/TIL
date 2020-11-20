@@ -1,6 +1,7 @@
 # Call()
 
-## binding
+- binding 개념을 이해한다.
+- call, apply, bind의 차이를 안다.
 
 ## call()
 
