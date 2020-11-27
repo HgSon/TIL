@@ -45,33 +45,26 @@ class RandomBanner {
     this.width = this.$target.offsetWidth;
     this.render();
   }
+
   slide(e) {
     const { value } = e.target.attributes.slideSide;
+    const $images = this.$imageWapper;
     if (value === "left") {
-      console.log(this.$imageWapper.children[this.data.length - 1]);
-      const nextImage = this.$imageWapper.children[this.data.length - 1];
-      this.$imageWapper.removeChild(nextImage);
-      this.$imageWapper.prepend(nextImage);
-      console.log(this.$imageWapper.children);
       if (this.viewPoint !== 0) {
         this.viewPoint--;
+      } else {
+        setChildren().slideBackward($images);
       }
     } else {
       if (this.viewPoint !== this.data.length - 1) {
         this.viewPoint++;
+      } else {
+        setChildren().slideForward($images);
       }
     }
-    this.$imageWapper.style.left = `-${this.width * this.viewPoint}px`;
+    console.log(this.$imageWapper);
   }
-  //   widthObserver = new IntersectionObserver((entries) => {
-  //     entries.forEach((entry, observer) => {
-  //       console.log(entry);
-  //       if (entry.boundingClientRect.width !== this.width) {
-  //         this.width = entry.boundingClientRect.width;
-  //         this.render();
-  //       }
-  //     });
-  //   });
+
   slideObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -89,16 +82,11 @@ class RandomBanner {
     { root: this.$banner, rootMargin: "0px 10px" }
   );
   async setData() {
-    // const { data } = await api.getRandomCats();
-
     this.data = [1, 2, 3, 4, 5];
     this.render();
   }
 
   render() {
-    console.log("render");
-    this.$banner.style.width = `${this.width}px`;
-    this.$imageWapper.style.width = `${this.width * this.data.length}px`;
     this.$imageWapper.innerHTML = this.data
       .map((v) => `<div>${v}</div>`)
       .join("");
@@ -116,3 +104,20 @@ class RandomBanner {
 }
 
 new RandomBanner(document.querySelector("#app"));
+
+function setChildren() {
+  return {
+    slideForward: (target) => {
+      const nextData = target.children[0];
+      target.removeChild(nextData);
+      target.append(nextData);
+      return target;
+    },
+    slideBackward: (target) => {
+      const nextData = target.children[target.children.length - 1];
+      target.removeChild(nextData);
+      target.prepend(nextData);
+      return target;
+    },
+  };
+}
