@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <ul>
+      <li>0</li>
+      <li>1</li>
+      <li>2</li>
+    </ul>
+    <script>
+      var nodes = document.querySelector("ul");
+      for (var k = 0; k < nodes.children.length; k++) {
+        nodes.children[k].addEventListener("click", () => {
+          console.log(k);
+        });
+      }
+      let get = (...rest) => {
+        console.log("get this", this);
+        this.count = 20;
+      };
+      function getEs5() {
+        this.count = 20;
+      }
+      //   get(1, 2, 3);
+      //   getEs5(1, 2, 3);
+      get.prototype = {
+        add: () => {
+          console.log("add", this);
+          this.count += 1;
+        },
+        add2: function () {
+          console.log(this);
+          this.count += 1;
+        },
+      };
+      getEs5.prototype = {
+        add: () => {
+          console.log("add", this);
+          this.count += 1;
+        },
+        add2: function () {
+          console.log(this);
+          this.count += 1;
+        },
+      };
+      get();
+      get.prototype.add();
+      get.prototype.add2();
+      console.log(get.count);
+      //   let get2 = new getEs5();
+      //   get2.add();
+      //   get2.add2();
+      //   console.log(get2.count);
+      //   let get22 = new get();
+    </script>
+  </body>
+</html>

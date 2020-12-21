@@ -62,7 +62,8 @@ class RandomBanner {
         setChildren().slideForward($images);
       }
     }
-    console.log(this.$imageWapper);
+    this.$imageWapper.style.left = `-${this.width * this.viewPoint}px`;
+    this.render();
   }
 
   slideObserver = new IntersectionObserver(
